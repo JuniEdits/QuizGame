@@ -1,0 +1,160 @@
+/* Γενικό styling για το σώμα της σελίδας */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7fafc; /* Ανοιχτό γκρι φόντο */
+            display: flex;
+            justify-content: center; /* Κεντράρισμα οριζόντια */
+            align-items: center; /* Κεντράρισμα κάθετα */
+            min-height: 100vh; /* Ελάχιστο ύψος 100% του viewport */
+            margin: 0;
+            overflow-y: auto; /* Επιτρέπει κύλιση αν το περιεχόμενο ξεπερνά το ύψος */
+        }
+        /* Στυλ για το κύριο κοντέινερ του κουίζ */
+        .quiz-container {
+            background-color: #ffffff; /* Λευκό φόντο */
+            border-radius: 15px; /* Στρογγυλεμένες γωνίες */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Ελαφριά σκιά */
+            width: 100%; /* Πλήρες πλάτος */
+            max-width: 700px; /* Μέγιστο πλάτος για καλύτερη ανάγνωση */
+            text-align: center; /* Κεντράρισμα κειμένου */
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem; /* Προεπιλεγμένο padding για κινητά (24px) */
+        }
+        /* Media queries για responsive padding - προσαρμογή του padding σε μεγαλύτερες οθόνες */
+        @media (min-width: 640px) { /* Από breakpoint 'sm' και πάνω */
+            .quiz-container {
+                padding: 2rem; /* padding 32px */
+            }
+        }
+        @media (min-width: 1024px) { /* Από breakpoint 'lg' και πάνω */
+            .quiz-container {
+                padding: 2.5rem; /* padding 40px */
+            }
+        }
+
+        /* Ψευδο-στοιχείο για τη γραμμή με τα χρώματα του Pride στην κορυφή */
+        .quiz-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            /* Χρώματα της σημαίας Pride */
+            background: linear-gradient(to right, #E40303, #FF8C00, #FFED00, #008026, #004DFF, #750787);
+        }
+        /* Στυλ για το κείμενο της ερώτησης */
+        .question {
+            font-size: 1.5rem; /* Μέγεθος γραμματοσειράς */
+            margin-bottom: 30px; /* Κάτω περιθώριο */
+            color: #333; /* Σκούρο γκρι χρώμα */
+            min-height: 80px; /* Ελάχιστο ύψος για συνέπεια στην εμφάνιση */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4; /* Απόσταση γραμμών για καλύτερη ανάγνωση */
+        }
+        /* Προσαρμογή μεγέθους γραμματοσειράς για πολύ μικρές οθόνες */
+        @media (max-width: 400px) {
+            .question {
+                font-size: 1.3rem; /* Ελαφρώς μικρότερο σε πολύ στενές οθόνες */
+            }
+        }
+        /* Ομάδα κουμπιών "Σωστό" / "Λάθος" */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap; /* Επιτρέπει στα κουμπιά να αλλάζουν γραμμή */
+            justify-content: center; /* Κεντράρισμα κουμπιών */
+            gap: 20px; /* Απόσταση μεταξύ των κουμπιών */
+            margin-bottom: 20px;
+        }
+        /* Γενικό στυλ για τα κουμπιά του κουίζ */
+        .quiz-button {
+            background-color: #4CAF50; /* Πράσινο για το "Σωστό" */
+            color: white; /* Λευκό κείμενο */
+            padding: 15px 30px; /* Εσωτερικό περιθώριο */
+            border: none; /* Χωρίς περίγραμμα */
+            border-radius: 8px; /* Στρογγυλεμένες γωνίες */
+            font-size: 1.2rem;
+            cursor: pointer; /* Δείκτης χεριού στο hover */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Ομαλή μετάβαση */
+            flex: 1; /* Επιτρέπει στα κουμπιά να επεκτείνονται */
+            min-width: 150px; /* Ελάχιστο πλάτος κουμπιού */
+            max-width: 200px; /* Μέγιστο πλάτος κουμπιού σε μία σειρά */
+            width: 100%; /* Προεπιλεγμένο πλήρες πλάτος για μικρές οθόνες */
+        }
+        /* Αντικατάσταση του πλάτους σε μεγαλύτερες οθόνες για να λειτουργήσει το flex */
+        @media (min-width: 500px) {
+            .quiz-button {
+                width: auto; /* Το πλάτος καθορίζεται από το flex */
+            }
+        }
+        .quiz-button:hover {
+            transform: translateY(-3px); /* Εφέ ανύψωσης στο hover */
+            opacity: 0.9;
+        }
+        .quiz-button:active {
+            transform: translateY(0); /* Εφέ πατήματος */
+        }
+        /* Ειδικό στυλ για το κουμπί "Λάθος" */
+        #false-button {
+            background-color: #f44336; /* Κόκκινο */
+        }
+        /* Στυλ για το μήνυμα ανατροφοδότησης (σωστό/λάθος) */
+        .feedback {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            min-height: 30px;
+            font-weight: bold;
+        }
+        /* Στυλ για την επεξήγηση της απάντησης */
+        .explanation {
+            font-size: 1rem;
+            margin-top: 15px;
+            color: #666; /* Γκρι χρώμα */
+            text-align: center;
+            padding: 0 15px;
+            min-height: 50px; /* Ελάχιστο ύψος για συνέπεια */
+            line-height: 1.5; /* Απόσταση γραμμών */
+        }
+        /* Στυλ για την εμφάνιση του σκορ */
+        .score {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            color: #555;
+        }
+        /* Στυλ για το κουμπί "Επόμενη Ερώτηση" και "Ξαναρχίστε το Quiz" */
+        .next-button, .restart-button {
+            background-color: #007bff; /* Μπλε */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .next-button:hover, .restart-button:hover {
+            background-color: #0056b3; /* Σκούρο μπλε στο hover */
+        }
+        /* Κλάση για απόκρυψη στοιχείων */
+        .hidden {
+            display: none;
+        }
+        /* Στυλ για σωστή απάντηση */
+        .correct-feedback {
+            color: #28a745; /* Πράσινο */
+        }
+        /* Στυλ για λανθασμένη απάντηση */
+        .incorrect-feedback {
+            color: #dc3545; /* Κόκκινο */
+        }
+        /* Στυλ για την υπογραφή "Created by" */
+        .created-by {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #888;
+        }
